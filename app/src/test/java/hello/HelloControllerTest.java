@@ -26,7 +26,7 @@ public class HelloControllerTest {
     public void getHello() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello from Zerobig's Spring Boot on Azure DevOps!")));
+                .andExpect(content().string(equalTo("Hello from Spring Boot on Azure DevOps!")));
     }
 }
 
