@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeroaksdemo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: zero-aks-app
+  template:
+    metadata:
+      labels:
+        app: zero-aks-app
+    spec:
+      containers:
+        - name: zero-aks-demo
+          image: zeroacrdemo.azurecr.io/java4container-demo:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: zero-aks-app
+spec:
+  ports:
+    - name: http-port
+      port: 80
+      targetPort: 80
+  selector:
+    app: zero-aks-app
+  type: LoadBalancer
